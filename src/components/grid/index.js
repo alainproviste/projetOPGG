@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
-import { View, FlatList, Text, Image } from 'react-native';
+import { View, FlatList, Image } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
-import { Title, TouchableSurface } from "../styledComponents";
+import { Title, TouchableSurface, TextCard } from "../styledComponents";
 
 const Grid = (props) => {
 
@@ -12,21 +12,20 @@ const Grid = (props) => {
             <Title>{props.title}</Title>
             <FlatList
                 data={Object.values(props.data)}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item[`${props.keyName}`]}
                 horizontal={props.orientation}
                 numColumns={props.nbColumns}
                 renderItem={({ item }) => (
                 <TouchableSurface onPress={() => {
                     navigation.navigate(props.navigation, {
-                        id: item.id,
-                        name: item.name
+                        name: item[`${props.detailKey}`]
                     })
                 }}>
                     <Image
-                    style={{ height: 190, width: 190 }}
+                    style={{ height: 190, width: 170, margin: 5 }}
                     source={{ uri: `${props.url}${item.image.full}` }}
                     />
-                    <Text>{item.name}</Text>
+                    <TextCard>{item.name}</TextCard>
                 </TouchableSurface>
                 )}
             />

@@ -3,9 +3,10 @@ import { Image } from "react-native";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FlashMessage from 'react-native-flash-message';
 
 import HomeStack from './homeStack';
-import SettingStack from './settingStack';
+import ItemStack from './itemStack';
 import ChampionStack from './championStack';
 
 const BottomTab = createBottomTabNavigator();
@@ -47,9 +48,10 @@ const Routes = () => {
               },
             }}
           />
-          <BottomTab.Screen name='SettingStack' component={SettingStack}
+          <BottomTab.Screen name='ItemStack' component={ItemStack}
             options={{
-              title: 'Setting',
+              title: 'Item',
+              headerShown: false,
               tabBarIcon: ({size,focused,color}) => {
                 return (
                   <Image
@@ -64,6 +66,7 @@ const Routes = () => {
             }}
           />
         </BottomTab.Navigator>
+        <FlashMessage position='top'/>
       </NavigationContainer>
     )
   }

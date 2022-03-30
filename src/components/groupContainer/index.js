@@ -1,16 +1,15 @@
 import React from 'react';
-import {View} from 'react-native';
-import { Title, Text } from '../styledComponents';
+import { Title, Text, FieldSet } from '../styledComponents';
 
 const GroupContainer = (props) => {
     return(
-        <View>
+        <FieldSet>
             <Title>{props.title}</Title>
             { props.list ? (
                 <>
                     {
                         props.list.map((value, index) => {
-                            return <Text>{value}</Text>
+                            return <Text key={value}>{value}</Text>
                         })
                     }
                 </>
@@ -18,7 +17,7 @@ const GroupContainer = (props) => {
             :(
                 <Text>{props.text}</Text>
             )}
-        </View>
+        </FieldSet>
     )
 }
 
